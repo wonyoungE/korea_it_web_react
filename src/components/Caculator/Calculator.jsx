@@ -67,14 +67,14 @@ function Calculator() {
         <button value={"C"} onClick={onClickHandler}>
           C
         </button>
-        <button value={"back"} onClick={onClickHandler}>
-          ←
-        </button>
         <button value={"%"} onClick={onClickHandler}>
           %
         </button>
         <button value={"/"} onClick={onClickHandler}>
           /
+        </button>
+        <button value={"back"} onClick={onClickHandler}>
+          ←
         </button>
       </div>
       <div>
