@@ -15,7 +15,7 @@ function LifeCycleApp() {
           setShow((prev) => !prev);
         }}
       >
-        {show ? "컴포넌트 숨기기(언마운트)" : "컴포넌트 보이기(마운트)"};
+        {show ? "컴포넌트 숨기기(언마운트)" : "컴포넌트 보이기(마운트)"}
       </button>
       <button
         onClick={() => {

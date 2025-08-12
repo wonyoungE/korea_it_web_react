@@ -1,4 +1,4 @@
-import "./App.css";
+// import한 각 컴포넌트에 css가 import되어있으면 걔가 적용됨..
 import BasicJsx from "./components/BasicJsx/BasicJsx";
 import BasicReact from "./components/BasicReact/BasicReact";
 import BasicProps from "./components/BasicProps/BasicProps";
@@ -12,6 +12,12 @@ import DomRef from "./components/DomRef/DomRef";
 import Render from "./components/LifeCycle/Render";
 import LifeCycle from "./components/LifeCycle/LifeCycle";
 import LifeCycleApp from "./components/LifeCycle/LifeCycleApp";
+import "./App.css";
+import Effect1 from "./components/Effect/Effect1/Effect1";
+import Effect2 from "./components/Effect/Effect2/Effect2";
+import FruitsFilter from "./components/Practice/FruitsFilter/FruitsFilter";
+import UserProfile from "./components/Practice/UserProfile/UserProfile";
+import SignUpForm from "./components/Practice/SignupForm/SignupForm";
 
 // 함수
 // App()은 main.jsx가 root div에 넣어줬움
@@ -29,7 +35,12 @@ function App() {
       {/* <InputState4></InputState4> */}
       {/* <DomRef /> */}
       {/* <Render /> */}
-      <LifeCycleApp />
+      {/* <LifeCycleApp /> */}
+      {/* <Effect1 /> */}
+      {/* <Effect2 /> */}
+      {/* <FruitsFilter /> */}
+      {/* <UserProfile /> */}
+      <SignUpForm />
     </>
   );
 }

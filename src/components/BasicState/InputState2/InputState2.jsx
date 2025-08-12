@@ -17,7 +17,7 @@ function InputState2() {
       ...inputValue,
       // [] 쓰는 이유 -> 그냥 name이라고 하면 변수명 자체가 name이 됨
       // [name] => name 변수가 갖고있는 값을 키로 쓰는 것
-      [name]: value, // 같은 키를 갖고있는 요소한테 값 덮어쓰기 => spread 문법??임??
+      [name]: value, // 같은 키를 갖고있는 요소한테 값 덮어쓰기 => spread 문법??임?? 마즘~
     };
     // 객체 안에서 []를 쓰면 변수 안에 들어있는 문자열 값을 키로 사용할 수 있다.
 
@@ -26,6 +26,7 @@ function InputState2() {
 
   return (
     <div>
+      {/* 어차피 inputValue의 상태가 변하면 재렌더링 */}
       <h1>{inputValue.t1}</h1>
       <h1>{inputValue.t2}</h1>
       <h1>{inputValue.t3}</h1>

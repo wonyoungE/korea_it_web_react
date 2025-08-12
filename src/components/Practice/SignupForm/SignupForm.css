@@ -1,0 +1,19 @@
+#signupForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#signupForm > input {
+  padding: 10px 5px;
+  font-size: 1.1em;
+}
+
+p {
+  margin: 5px 0 10px;
+  padding: 0;
+  color: red;
+}
+
+/* button:disabled {
+  background-color: blue;
+} */

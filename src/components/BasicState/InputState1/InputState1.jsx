@@ -1,8 +1,8 @@
 import { useState } from "react";
 
+// 함수형 컴포넌트
 function InputState1() {
   // 똑같은 게 두개씩.. 비효율적인거가틈
-
   const [inputValue1, setInputValue1] = useState("");
   const [h1Text1, setH1Text1] = useState("");
 
@@ -13,6 +13,7 @@ function InputState1() {
     setInputValue1(e.target.value);
   };
 
+  // 얘는 그냥 자바스크립트 함수
   const inputOnChangeHandler2 = (e) => {
     setInputValue2(e.target.value);
   };
