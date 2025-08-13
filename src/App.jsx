@@ -18,6 +18,9 @@ import Effect2 from "./components/Effect/Effect2/Effect2";
 import FruitsFilter from "./components/Practice/FruitsFilter/FruitsFilter";
 import UserProfile from "./components/Practice/UserProfile/UserProfile";
 import SignUpForm from "./components/Practice/SignupForm/SignupForm";
+import Emotion1 from "./components/Emotion/Emotion1/Emotion1";
+// import Emotion2 from "./components/Emotion/Emotion2/Emotion2";
+// import Index from "./components/TodoList/pages";
 
 // 함수
 // App()은 main.jsx가 root div에 넣어줬움
@@ -40,7 +43,10 @@ function App() {
       {/* <Effect2 /> */}
       {/* <FruitsFilter /> */}
       {/* <UserProfile /> */}
-      <SignUpForm />
+      {/* <SignUpForm /> */}
+      <Emotion1 />
+      {/* <Emotion2 /> */}
+      {/* <Index /> */}
     </>
   );
 }

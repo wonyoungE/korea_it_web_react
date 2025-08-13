@@ -1,69 +1,46 @@
 import { useEffect, useState } from "react";
 import "./SignupForm.css";
 
-const inputValueEmpty = {
-  email: "",
-  password: "",
-};
-
 function SignUpForm() {
-  const [formValues, setFormValues] = useState(inputValueEmpty);
+  const [formValues, setFormValues] = useState({
+    email: "",
+    password: "",
+  });
   const [error, setError] = useState({});
-  const [isDisabled, setIsDisable] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   // 아이디는 @ 잇는지
   // 비밀번호는 8자 이상인지로만 유효성검사 ㄱㄱ
   useEffect(() => {
-    // formValues의 값이 바뀔 때마다 무조건 실행
-    console.log(formValues.email, formValues.password);
-    const emailInput = formValues.email;
-    const passwordInput = formValues.password;
+    setIsDisabled(true);
+    const newErrors = {};
 
-    let emailError = "";
-    let passwordError = "";
-    let formIsValid = true;
-
-    // 이메일 유효성 검사
-    if (emailInput.length > 0 && !emailInput.includes("@")) {
-      formIsValid = false;
-      emailError = "올바르지 않은 이메일 형식입니다.";
-    } else if (emailInput.length == 0) {
-      // 아무것도 입력되지 않은 상태
-      formIsValid = false;
+    if (!formValues.email.includes("@") && formValues.email.length > 0) {
+      newErrors.email = "이메일 형식에 맞게 입력해주세요.";
+    }
+    if (formValues.password.length < 8 && formValues.password.length > 0) {
+      newErrors.password = "비밀번호는 8자리 이상이어야 합니다.";
     }
 
-    // 비밀번호 유효성 검사
-    if (passwordInput.length > 0 && passwordInput.length < 8) {
-      formIsValid = false;
-      passwordError = "비밀번호는 8자 이상이어야 합니다.";
-    } else if (passwordInput.length == 0) {
-      // 아무것도 입력되지 않은 상태
-      formIsValid = false;
-    }
-
-    const newError = {
-      email: emailError,
-      password: passwordError,
-    };
-    setError(newError);
+    setError(newErrors);
 
     // 유효성 검사 끝났으면 버튼 활성화 상태 변경
-    if (formIsValid) {
-      setIsDisable(false);
-    } else {
-      setIsDisable(true);
+    // true가 비활성화
+    if (
+      Object.keys(newErrors).length === 0 &&
+      formValues.email &&
+      formValues.password
+    ) {
+      setIsDisabled(false);
     }
   }, [formValues]);
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
-    console.log(e.target);
-    setFormValues((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
-    });
+    setFormValues((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   return (
@@ -77,7 +54,7 @@ function SignUpForm() {
           onChange={onChangeHandler}
           placeholder="이메일"
         />
-        <p>{error.email}</p>
+        {error.email && <p>{error.email}</p>}
         <input
           type="password"
           name="password"
@@ -85,10 +62,16 @@ function SignUpForm() {
           onChange={onChangeHandler}
           placeholder="비밀번호"
         />
-        <p>{error.password}</p>
+        {error.password && <p>{error.password}</p>}
         <button
-          disabled={isDisabled}
-          onClick={() => console.log("가입 버튼 누름")}
+          disabled={isDisabled} // true가 비활성화
+          onClick={() => {
+            console.log("회원가입 완.");
+            setFormValues({
+              email: "",
+              password: "",
+            });
+          }}
         >
           가입하기
         </button>
