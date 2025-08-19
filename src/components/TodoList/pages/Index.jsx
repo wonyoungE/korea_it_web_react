@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import Main from "../components/Main/Main";
 
@@ -53,25 +53,33 @@ function Index() {
     }
   }, [todoList]);
 
-  // 얘는 언제 실행되는거임..?
-  const filteredTodoList = todoList
-    .filter((todo) => {
-      if (filter === "all") {
-        return true; // 전체 다 가져오기
-      } else if (filter === "complete") {
-        return todo.isComplete; // todo에 isComplete가 true인 애들만 return
-      } else if (filter === "incomplete") {
-        return !todo.isComplete; // todo에 isComplete가 false인 애들만 return
-      }
-    }) // 필터 거친 후에 searchText도 거쳐야 함 => 메서드 체이닝
-    .filter((todo) => {
-      if (searchText.trim().length == 0) {
-        return true; // 검색 단어가 없으면 전체 리턴
-      } else {
-        // 아니면 포함된 애들만 데려오기
-        return todo.content.includes(searchText);
-      }
-    });
+  // 만약에 todoList가 너무 커서 렌더링할 때마다 filter가 실행되는 게 부담이 된다면?
+  // useMemo로 최적화 가능 => useEffect처럼 특정 상태가 변경될 때마다만 실행시킬 수 있다.
+  // 이렇게 하면 todoList, filter, searchText가 바뀔 때에만 다시 계산되고 나머지 재렌더링 때는 이전 값을 재사용함
+  // useMemo 사용 안하고 그냥 변수에 할당할 때 => filter()가 배열 반환
+  // useMemo 사용해서 할당할 때 => 내가 만든 함수(화살표 함수) 안에서 실행되는 코드
+  // 화살표 함수는 {}(블록)을 쓰면 암묵적 return이 안됨
+  // 즉, 아무것도 return 하지 않으면 기본값인 undefined가 return됨
+  const filteredTodoList = useMemo(() => {
+    return todoList
+      .filter((todo) => {
+        if (filter === "all") {
+          return true; // 전체 다 가져오기
+        } else if (filter === "complete") {
+          return todo.isComplete; // todo에 isComplete가 true인 애들만 return
+        } else if (filter === "incomplete") {
+          return !todo.isComplete; // todo에 isComplete가 false인 애들만 return
+        }
+      }) // 필터 거친 후에 searchText도 거쳐야 함 => 메서드 체이닝
+      .filter((todo) => {
+        if (searchText.trim().length == 0) {
+          return true; // 검색 단어가 없으면 전체 리턴
+        } else {
+          // 아니면 포함된 애들만 데려오기
+          return todo.content.includes(searchText);
+        }
+      });
+  }, [filter, searchText, todoList]);
 
   return (
     <Layout filter={filter} setFilter={setFilter} setSearchText={setSearchText}>

@@ -20,13 +20,19 @@
 // import SignUpForm from "./components/Practice/SignupForm/SignupForm";
 // import Emotion1 from "./components/Emotion/Emotion1/Emotion1";
 // import Emotion2 from "./components/Emotion/Emotion2/Emotion2";
+import { BrowserRouter } from "react-router-dom";
 import Index from "./components/TodoList/pages";
+import Router1 from "./RouterStudy/Router1/Router1";
+import Router2 from "./RouterStudy/Router2/Router2";
+import Router3 from "./RouterStudy/Router3/Router3";
+import Router4 from "./RouterStudy/Router4/Router4";
 
 // 함수
 // App()은 main.jsx가 root div에 넣어줬움
 function App() {
   return (
-    <>
+    // BrowserRouter가 있어야 라우팅 가능
+    <BrowserRouter>
       {/* <BasicReact /> */}
       {/* <BasicJsx /> */}
       {/* <BasicProps /> */}
@@ -46,8 +52,16 @@ function App() {
       {/* <SignUpForm /> */}
       {/* <Emotion1 /> */}
       {/* <Emotion2 /> */}
-      <Index />
-    </>
+      {/* <Index /> */}
+      {/* <Router1 /> */}
+      {/* <Router2 /> */}
+      {/* <Router3 /> */}
+      <Router4 />
+    </BrowserRouter>
+    /**
+     * BrowserRouter로 감싸진 내부에 있는 컴포넌트들만
+     * Routes, Route, Link, useNavigation 같은 라우터 기능 사용 가능
+     */
   );
 }
 
